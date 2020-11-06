@@ -7,15 +7,16 @@ on:
     - cron:  '*/30 * * * *'
 
 jobs:
-  release:
+  sync:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
+          ssh-key: ${{ secrets.SSH_KEY }}
           repository: Xmader/musescore-downloader
           ref: master
           fetch-depth: 0
           submodules: true
-      - run: 'git remote add musescore https://github.com/Xmader/MuseScore.git'
+      - run: 'git remote add musescore git@github.com:Xmader/MuseScore.git'
       - run: 'git push -f musescore master:msdl'
           
