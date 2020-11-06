@@ -16,6 +16,6 @@ jobs:
           ref: master
           fetch-depth: 0
           submodules: true
-      - run: 'git remote add origin https://github.com/Xmader/MuseScore.git'
-      - run: 'git push -f origin master:msdl'
+      - run: 'git remote add musescore https://github.com/Xmader/MuseScore.git'
+      - run: 'git push -f musescore master:msdl'
           
