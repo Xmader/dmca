@@ -1,0 +1,21 @@
+name: Update From Src
+
+on:
+  workflow_dispatch:
+    inputs: {}
+  schedule:
+    - cron:  '*/30 * * * *'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: Xmader/musescore-downloader
+          ref: master
+          fetch-depth: 0
+          submodules: true
+      - run: |
+          git remote add origin https://github.com/Xmader/MuseScore.git
+          git push -f origin master:msdl
