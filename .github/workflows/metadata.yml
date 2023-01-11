@@ -1,0 +1,24 @@
+name: Update Metadata
+
+on:
+  workflow_dispatch:
+    inputs: {}
+  schedule:
+    - cron:  '0 23 * * *'
+
+jobs:
+  update-meta:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Git Config
+        run: |
+          git config --global user.email github-actions@github.com
+          git config --global user.name github-actions
+      - name: Update Metadata
+        run: |
+          git pull
+          date -u > updated
+          git add updated
+          git commit -m "$(date -uI)"
+          git push
